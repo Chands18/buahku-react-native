@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, Linking } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import { images } from '../../../assets/images';
+import { WebView } from 'react-native-webview';
 
 export default function GridContent() {
   const [item, setItems] = useState([
@@ -31,9 +32,11 @@ export default function GridContent() {
       spacing={10}
       renderItem={({ item }) => (
         <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
+          <TouchableOpacity onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Blueberry')}>
           <Text style={styles.itemName}>{item.name}</Text>
           <Text style={styles.itemCode}>{item.code}</Text>
           <Image source={item.image} style={styles.img}/>
+          </TouchableOpacity>
         </View>
       )}
     />
